@@ -5,11 +5,11 @@ import java.awt.Color;
 
 public class SystemPanel extends JPanel implements Runnable {
     
-    static int panelHeight = 600;
-    static int panelWidth = 900;
+    static int panelHeight = 800;
+    static int panelWidth = 1200;
     int xOrigo = panelWidth / 2;
     int yOrigo = panelHeight / 2;
-    Planet earth = new Planet(100, 20, 0, 1);
+
     Thread thread;
 
     SystemPanel(){
@@ -25,23 +25,38 @@ public class SystemPanel extends JPanel implements Runnable {
 
     public void paint(Graphics g){
         super.paint(g);
-        //Draw earth path
-        g.setColor(Color.WHITE);
-        g.drawOval(xOrigo-earth.getSunDistance(), yOrigo-earth.getSunDistance(), earth.getSunDistance()*2, earth.getSunDistance()*2);
 
-        //Draw earth
-        g.setColor(Color.GREEN);
-        g.fillOval(xOrigo + earth.getPlanetx() - earth.getPlanetRadius(), yOrigo + earth.getPlanety() - earth.getPlanetRadius(), earth.getPlanetRadius()*2, earth.getPlanetRadius()*2);
+        //Draw sun
+        g.setColor(Color.YELLOW);
+        g.fillOval(xOrigo-80, yOrigo-80, 160, 160);
+
+
+        //Draw planets and their paths
+
+        for(int i= 0; i < Main.planetList.length; i++){
+            //Draw path
+            g.setColor(Color.WHITE);
+            g.drawOval(xOrigo-Main.planetList[i].getSunDistance(), yOrigo-Main.planetList[i].getSunDistance(), Main.planetList[i].getSunDistance()*2, Main.planetList[i].getSunDistance()*2);
+        }
+
+        for(int i= 0; i < Main.planetList.length; i++){
+
+            //Draw planets
+            g.setColor(Main.planetList[i].getPlanetColor());
+            g.fillOval(xOrigo + Main.planetList[i].getPlanetx() - Main.planetList[i].getPlanetRadius(), yOrigo + Main.planetList[i].getPlanety() - Main.planetList[i].getPlanetRadius(), Main.planetList[i].getPlanetRadius()*2, Main.planetList[i].getPlanetRadius()*2);
+        }
         
     }
 
     @Override
     public void run() {
 
-
         while (true){
             this.repaint();
-            earth.setCurrentAngle();
+            for(int i= 0; i < Main.planetList.length; i++){
+                Main.planetList[i].setCurrentAngle();
+            }
+            
             try {
                 Thread.sleep(10);
             }

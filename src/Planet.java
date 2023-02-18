@@ -1,19 +1,20 @@
+import java.awt.Color;
 public class Planet {
     
 int sunDistance;
-int planetRadius;
+double planetRadius;
 double currentAngle;
-int velocity;
+double velocity;
+Color color;
 
 
 
-    public Planet(int sunDistance, int planetRadius, double currentAngle, int velocity){
+    public Planet(int sunDistance, double planetRadius, double currentAngle, double velocity, Color color){
         this.sunDistance = sunDistance;
         this.planetRadius = planetRadius;
         this.currentAngle = currentAngle;
         this.velocity = velocity;
-        
-        
+        this.color = color;
     }
 
     public int getSunDistance(){
@@ -21,7 +22,7 @@ int velocity;
     }
 
     public int getPlanetRadius(){
-        return this.planetRadius;
+        return (int)this.planetRadius;
     }
 
     public int getPlanetx(){
@@ -30,6 +31,10 @@ int velocity;
 
     public int getPlanety(){
         return (int) (sunDistance * Math.sin(currentAngle * Math.PI/180));
+    }
+
+    public Color getPlanetColor(){
+        return this.color;
     }
 
     public void setCurrentAngle(){
