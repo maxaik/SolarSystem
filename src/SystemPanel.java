@@ -40,10 +40,16 @@ public class SystemPanel extends JPanel implements Runnable {
         }
 
         for(int i= 0; i < Main.planetList.length; i++){
-
-            //Draw planets
+            // Draw planets
             g.setColor(Main.planetList[i].getPlanetColor());
             g.fillOval(xOrigo + Main.planetList[i].getPlanetx() - Main.planetList[i].getPlanetRadius(), yOrigo + Main.planetList[i].getPlanety() - Main.planetList[i].getPlanetRadius(), Main.planetList[i].getPlanetRadius()*2, Main.planetList[i].getPlanetRadius()*2);
+        }
+
+        for(int i= 0; i < Main.planetList.length; i++){
+            // Draw names
+            g.setColor(Color.WHITE);
+            g.drawString(Main.planetList[i].getPlanetName(), xOrigo + Main.planetList[i].getPlanetx() - Main.planetList[i].getPlanetRadius(), yOrigo + Main.planetList[i].getPlanety() - Main.planetList[i].getPlanetRadius());
+            
         }
         
     }

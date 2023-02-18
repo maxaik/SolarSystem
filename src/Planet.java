@@ -1,6 +1,7 @@
 import java.awt.Color;
 public class Planet {
     
+String planetName;
 int sunDistance;
 double planetRadius;
 double currentAngle;
@@ -9,12 +10,17 @@ Color color;
 
 
 
-    public Planet(int sunDistance, double planetRadius, double currentAngle, double velocity, Color color){
+    public Planet(String planetName, int sunDistance, double planetRadius, double currentAngle, double velocity, Color color){
+        this.planetName = planetName;
         this.sunDistance = sunDistance;
         this.planetRadius = planetRadius;
         this.currentAngle = currentAngle;
         this.velocity = velocity;
         this.color = color;
+    }
+
+    public String getPlanetName(){
+        return this.planetName;
     }
 
     public int getSunDistance(){
